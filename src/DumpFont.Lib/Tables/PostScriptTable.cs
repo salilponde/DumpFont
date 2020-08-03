@@ -8,8 +8,8 @@ namespace DumpFont.Tables
     public class PostScriptTable
     {
         public const string Tag = "post";
-        public decimal Version { get; private set; }          // Fixed Point Number
-        public uint ItalicAngle { get; private set; }          // Fixed Point Number
+        public decimal Version { get; private set; }                // Fixed Point Number
+        public decimal ItalicAngle { get; private set; }            // Fixed Point Number
         public short UnderlinePosition { get; private set; }
         public short UnderlineThickness { get; private set; }
         public uint IsFixedPitch { get; private set; }
@@ -23,7 +23,7 @@ namespace DumpFont.Tables
             var instance = new PostScriptTable
             {
                 Version = reader.ReadFixedPointNumber(),
-                ItalicAngle = reader.ReadUInt32BigEndian(),
+                ItalicAngle = reader.ReadFixedPointNumber(),
                 UnderlinePosition = reader.ReadInt16BigEndian(),
                 UnderlineThickness = reader.ReadInt16BigEndian(),
                 IsFixedPitch = reader.ReadUInt32BigEndian(),
@@ -39,7 +39,7 @@ namespace DumpFont.Tables
         {
             var sb = new StringBuilder();
             sb.AppendTitleValue("Version", Math.Round(Version, 2));
-            sb.AppendTitleValue("ItalicAngle", ItalicAngle);
+            sb.AppendTitleValue("ItalicAngle", Math.Round(ItalicAngle, 2));
             sb.AppendTitleValue("UnderlinePosition", UnderlinePosition);
             sb.AppendTitleValue("UnderlineThickness", UnderlineThickness);
             sb.AppendTitleValue("IsFixedPitch", IsFixedPitch);
