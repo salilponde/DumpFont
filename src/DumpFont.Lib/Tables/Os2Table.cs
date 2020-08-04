@@ -73,7 +73,7 @@ namespace DumpFont.Tables
                 UlUnicodeRange2 = reader.ReadUInt32BigEndian(),
                 UlUnicodeRange3 = reader.ReadUInt32BigEndian(),
                 UlUnicodeRange4 = reader.ReadUInt32BigEndian(),
-                AchVendID = Encoding.ASCII.GetString(reader.ReadBytes(4)),
+                AchVendID = reader.ReadTag(),
                 FsSelection = reader.ReadUInt16BigEndian(),
                 UsFirstCharIndex = reader.ReadUInt16BigEndian(),
                 UsLastCharIndex = reader.ReadUInt16BigEndian(),

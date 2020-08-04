@@ -16,11 +16,12 @@ namespace DumpFontConsole
             rootCommand.AddOption(new Option<string>(aliases: new string[] { "--table", "-t" }, description: "Table to dump"));
             rootCommand.AddOption(new Option<int>(aliases: new string[] { "--encoding", "-e" }, description: "Encoding index in cmap table"));
             rootCommand.AddOption(new Option<uint?>(aliases: new string[] { "--glyphindex", "-g" }, description: "Get glyph index of character code"));
-            rootCommand.Handler = CommandHandler.Create<string, string, int, uint?>(Execute);
+            rootCommand.AddOption(new Option<uint?>(aliases: new string[] { "--glyphheader", "-h" }, description: "Get glyph header for specifed character code"));
+            rootCommand.Handler = CommandHandler.Create<string, string, int, uint?, uint?>(Execute);
             rootCommand.InvokeAsync(args).Wait();
         }
 
-        static void Execute(string file, string table, int encoding = -1, uint? glyphindex = null)
+        static void Execute(string file, string table, int encoding = -1, uint? glyphindex = null, uint? glyphheader = null)
         {
             if (string.IsNullOrWhiteSpace(file))
             {
@@ -29,7 +30,7 @@ namespace DumpFontConsole
             }
 
             var font = Font.ReadFromFile(file);
-            if (string.IsNullOrWhiteSpace(table) && encoding == -1 && glyphindex == null)
+            if (string.IsNullOrWhiteSpace(table) && encoding == -1 && glyphindex == null && glyphheader == null)
             {
                 foreach (var tableRecord in font.OffsetTable.TableRecords)
                 {
@@ -66,6 +67,20 @@ namespace DumpFontConsole
                 if (!found) Console.WriteLine($"Mapping not found for character code {glyphindex}");
                 else Console.WriteLine($"{index}");
             }
+            else if (glyphheader != null)
+            {
+                var found = font.CharacterMapTable.Encodings.Last().Value.TryGetGlyphId((int)glyphheader, out var index);
+                if (!found)
+                {
+                    Console.WriteLine($"Mapping not found for character code {glyphindex}");
+                }
+                else
+                {
+                    var blockLocation = font.IndexLocationTable.GetLocation(index);
+                    var glyphHeader = font.GlyphTable.ReadHeader(blockLocation);
+                    Console.WriteLine(glyphHeader.Dump());
+                }
+            }
             else
             {
                 switch (table)
@@ -81,6 +96,12 @@ namespace DumpFontConsole
                         break;
                     case HorizontalMetricsTable.Tag:
                         Console.WriteLine(font.HorizontalMetricsTable.Dump());
+                        break;
+                    case IndexLocationTableBase.Tag:
+                        Console.WriteLine(font.IndexLocationTable.Dump());
+                        break;
+                    case GlyphTable.Tag:
+                        Console.WriteLine("Use -h option to dump Glyph Header");
                         break;
                     case MaximumProfileTableBase.Tag:
                         Console.WriteLine(font.MaximumProfileTable.Dump());

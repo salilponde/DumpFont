@@ -3,7 +3,6 @@ using DumpFont.Exceptions;
 using DumpFont.Extensions;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace DumpFont.Tables
 {
@@ -52,7 +51,7 @@ namespace DumpFont.Tables
         {
             var instance = new TableRecord
             {
-                TableTag = Encoding.ASCII.GetString(reader.ReadBytes(4)),
+                TableTag = reader.ReadTag(),
                 Checksum = reader.ReadUInt32BigEndian(),
                 Offset = reader.ReadUInt32BigEndian(),
                 Length = reader.ReadUInt32BigEndian()

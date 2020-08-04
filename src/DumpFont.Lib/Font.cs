@@ -13,6 +13,8 @@ namespace DumpFont
         public MaximumProfileTableBase MaximumProfileTable { get; internal set; }
         public HorizontalHeaderTable HorizontalHeaderTable { get; internal set; }
         public HorizontalMetricsTable HorizontalMetricsTable { get; internal set; }
+        public IndexLocationTableBase IndexLocationTable { get; internal set; }
+        public GlyphTable GlyphTable { get; internal set; }
         public PostScriptTable PostScriptTable { get; internal set; }
         public Os2Table Os2Table { get; internal set; }
         public CharacterMapTable CharacterMapTable { get; internal set; }
@@ -62,6 +64,22 @@ namespace DumpFont
             font.HorizontalMetricsTable = HorizontalMetricsTable.Read(reader,
                 font.HorizontalHeaderTable.NumberOfHMetrics,
                 font.MaximumProfileTable.NumGlyphs);
+
+            // Glyph
+            var glyphTableRecord = font.OffsetTable.TableRecords.Single(x => x.TableTag == GlyphTable.Tag);
+            font.GlyphTable = new GlyphTable(reader, glyphTableRecord.Offset);
+
+            // IndexLocation
+            var indexLocationTableRecord = font.OffsetTable.TableRecords.Single(x => x.TableTag == IndexLocationTableBase.Tag);
+            stream.Seek(indexLocationTableRecord.Offset, SeekOrigin.Begin);
+            if (font.HeadTable.IndexToLocFormat == 0)
+            {
+                font.IndexLocationTable = IndexLocationShortFormatTable.Read(reader, font.MaximumProfileTable.NumGlyphs);
+            }
+            else
+            {
+                font.IndexLocationTable = IndexLocationLongFormatTable.Read(reader, font.MaximumProfileTable.NumGlyphs);
+            }
 
             // PostScript
             var postScriptTableRecord = font.OffsetTable.TableRecords.Single(x => x.TableTag == PostScriptTable.Tag);

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Buffers.Binary;
 using System.IO;
+using System.Text;
 
 namespace DumpFont.Extensions
 {
     public static class BinaryReaderExtensions
     {
+        public static string ReadTag(this BinaryReader reader)
+        {
+            return Encoding.ASCII.GetString(reader.ReadBytes(4)).TrimEnd('\0');
+        }
+
         public static DateTime ReadLongDateTime(this BinaryReader reader)
         {
             var seconds = reader.ReadInt64BigEndian();

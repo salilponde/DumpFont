@@ -129,6 +129,7 @@ namespace DumpFont.Tables
                 Language = reader.ReadUInt16BigEndian(),
                 SegCountX2 = reader.ReadUInt16BigEndian()
             };
+
             int segCount = instance.SegCountX2 / 2;
             instance.SearchRange = reader.ReadUInt16BigEndian();
             instance.EntrySelector = reader.ReadUInt16BigEndian();
@@ -138,7 +139,9 @@ namespace DumpFont.Tables
             instance.StartCode = reader.ReadUInt16BigEndianArray(segCount);
             instance.IdDelta = reader.ReadInt16BigEndianArray(segCount);
             instance.IdRangeOffset = reader.ReadUInt16BigEndianArray(segCount);
-            instance.GlyphIdArray = reader.ReadUInt16BigEndianArray(segCount);
+
+            var glyphIdArrayLength = (instance.Length - (16 + segCount * 8)) / 2;
+            instance.GlyphIdArray = reader.ReadUInt16BigEndianArray(glyphIdArrayLength);
 
             return instance;
         }
