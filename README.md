@@ -6,9 +6,11 @@ DumpFont is a command-line program to read data from font files.
 The project currently supports reading the below tables from TrueType font files.
 
 * cmap
+* glyf (Header only)
 * head
 * hhea
 * hmtx
+* loca
 * maxp
 * OS/2
 * post
@@ -29,4 +31,4 @@ Example to display table *head*
     
 # License
 
-The project uses the MIT license. Read LICENSE.txt for the details.
+The project uses the MIT license. Read [LICENSE.txt](https://github.com/salslab/DumpFont/blob/master/LICENSE.txt) for the details.
