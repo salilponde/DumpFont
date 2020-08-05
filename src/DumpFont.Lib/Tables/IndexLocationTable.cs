@@ -38,6 +38,8 @@ namespace DumpFont.Tables
         {
             var sb = new StringBuilder();
             sb.AppendTitleValue("Offsets[]", $"({Offsets.Length} records)");
+            sb.AppendLine();
+            sb.AppendTitleValue("Glyph Index", "Offset");
             for (int i = 0; i < Offsets.Length; i++)
             {
                 sb.AppendTitleValue(i.ToString(), Offsets[i]);
@@ -72,7 +74,9 @@ namespace DumpFont.Tables
         {
             var sb = new StringBuilder();
             sb.AppendTitleValue("Offsets[]", $"({Offsets.Length} records)");
-            for(int i = 0; i < Offsets.Length; i++)
+            sb.AppendLine();
+            sb.AppendTitleValue("Glyph Index", "Offset");
+            for (int i = 0; i < Offsets.Length; i++)
             {
                 sb.AppendTitleValue(i.ToString(), Offsets[i]);
             }

@@ -10,11 +10,16 @@ namespace DumpFont.Extensions
             builder.AppendLine(value.ToString());
         }
 
+        public static void AppendTableCell(this StringBuilder builder, object value)
+        {
+            builder.Append(string.Format("{0,-24}", $"{value}"));
+        }
+
         public static void AppendTableRow(this StringBuilder builder, params string[] values)
         {
             foreach (var value in values)
             {
-                builder.Append(string.Format("{0,-24}", value));
+                builder.AppendTableCell(value);
             }
         }
 

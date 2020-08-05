@@ -12,16 +12,15 @@ namespace DumpFontConsole
         static void Main(params string[] args)
         {
             var rootCommand = new RootCommand();
-            rootCommand.AddOption(new Option<string>(aliases: new string[] { "--file", "-f" }, description: "Font file to read"));
-            rootCommand.AddOption(new Option<string>(aliases: new string[] { "--table", "-t" }, description: "Table to dump"));
-            rootCommand.AddOption(new Option<int>(aliases: new string[] { "--encoding", "-e" }, description: "Encoding index in cmap table"));
-            rootCommand.AddOption(new Option<uint?>(aliases: new string[] { "--glyphindex", "-g" }, description: "Get glyph index of character code"));
-            rootCommand.AddOption(new Option<uint?>(aliases: new string[] { "--glyphheader", "-h" }, description: "Get glyph header for specifed character code"));
-            rootCommand.Handler = CommandHandler.Create<string, string, int, uint?, uint?>(Execute);
+            rootCommand.AddOption(new Option<string>(aliases: new string[] { "--file", "-f" }, description: "Font file"));
+            rootCommand.AddOption(new Option<string>(aliases: new string[] { "--table", "-t" }, description: "Dump table"));
+            rootCommand.AddOption(new Option<int>(aliases: new string[] { "--encoding", "-e" }, description: "Display encoding table specified by index"));
+            rootCommand.AddOption(new Option<uint?>(aliases: new string[] { "--glyph", "-g" }, description: "Get glyph header for specifed character code"));
+            rootCommand.Handler = CommandHandler.Create<string, string, int, uint?>(Execute);
             rootCommand.InvokeAsync(args).Wait();
         }
 
-        static void Execute(string file, string table, int encoding = -1, uint? glyphindex = null, uint? glyphheader = null)
+        static void Execute(string file, string table, int encoding = -1, uint? glyph = null)
         {
             if (string.IsNullOrWhiteSpace(file))
             {
@@ -30,7 +29,7 @@ namespace DumpFontConsole
             }
 
             var font = Font.ReadFromFile(file);
-            if (string.IsNullOrWhiteSpace(table) && encoding == -1 && glyphindex == null && glyphheader == null)
+            if (string.IsNullOrWhiteSpace(table) && encoding == -1 && glyph == null)
             {
                 foreach (var tableRecord in font.OffsetTable.TableRecords)
                 {
@@ -61,22 +60,18 @@ namespace DumpFontConsole
                     }
                 }
             }
-            else if (glyphindex != null)
+            else if (glyph != null)
             {
-                var found = font.CharacterMapTable.Encodings.Last().Value.TryGetGlyphId((int)glyphindex, out var index);
-                if (!found) Console.WriteLine($"Mapping not found for character code {glyphindex}");
-                else Console.WriteLine($"{index}");
-            }
-            else if (glyphheader != null)
-            {
-                var found = font.CharacterMapTable.Encodings.Last().Value.TryGetGlyphId((int)glyphheader, out var index);
+                var found = font.CharacterMapTable.Encodings.Last().Value.TryGetGlyphId((int)glyph, out var index);
                 if (!found)
                 {
-                    Console.WriteLine($"Mapping not found for character code {glyphindex}");
+                    Console.WriteLine($"Mapping not found for character code {glyph}");
                 }
                 else
                 {
+                    Console.WriteLine($"Glyph Index: {index}\n");
                     var blockLocation = font.IndexLocationTable.GetLocation(index);
+                    var nextBlockLocation = font.IndexLocationTable.GetLocation(index + 1);
                     var glyphHeader = font.GlyphTable.ReadHeader(blockLocation);
                     Console.WriteLine(glyphHeader.Dump());
                 }

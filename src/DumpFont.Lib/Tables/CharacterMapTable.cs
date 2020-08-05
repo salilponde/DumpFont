@@ -60,12 +60,15 @@ namespace DumpFont.Tables
             sb.AppendTitleValue("NumTables", NumTables);
             sb.AppendTitleValue("EncodingRecord[]", $"({EncodingRecords.Count} records)");
             sb.AppendLine();
-            sb.AppendTableRowLine("PlatformID", "EncodingID", "Offset", "(Format)");
+            sb.AppendTableRowLine("(Index)", "PlatformID", "EncodingID", "Offset", "(Format)");
+            int i = 0;
             foreach (var encodingRecord in EncodingRecords)
             {
+                sb.AppendTableCell(i++);
                 sb.Append(encodingRecord.Dump());
                 sb.AppendTableRowLine(EncodingFormats[encodingRecord].ToString());
             }
+            sb.AppendLine("\nUse '-e <Index>' option to list encoding records");
             return sb.ToString();
         }
     }

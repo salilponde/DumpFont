@@ -1,7 +1,8 @@
 {
   "profiles": {
     "DumpFont": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-f C:\\temp\\fonts\\calibri.ttf -t cmap"
     }
   }
 }
