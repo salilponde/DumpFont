@@ -28,8 +28,8 @@ namespace DumpFont.Tables
         public override string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Version", Version);
-            sb.AppendTitleValue("NumGlyphs", NumGlyphs);
+            sb.AppendTitleValueLine("Version", Version);
+            sb.AppendTitleValueLine("NumGlyphs", NumGlyphs);
             return sb.ToString();
         }
     }
@@ -75,21 +75,21 @@ namespace DumpFont.Tables
         public override string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Version", Version);
-            sb.AppendTitleValue("NumGlyphs", NumGlyphs);
-            sb.AppendTitleValue("MaxPoints", MaxPoints);
-            sb.AppendTitleValue("MaxContours", MaxContours);
-            sb.AppendTitleValue("MaxCompositePoints", MaxCompositePoints);
-            sb.AppendTitleValue("MaxCompositeContours", MaxCompositeContours);
-            sb.AppendTitleValue("MaxZones", MaxZones);
-            sb.AppendTitleValue("MaxTwilightPoints", MaxTwilightPoints);
-            sb.AppendTitleValue("MaxStorage", MaxStorage);
-            sb.AppendTitleValue("MaxFunctionDefs", MaxFunctionDefs);
-            sb.AppendTitleValue("MaxInstructionDefs", MaxInstructionDefs);
-            sb.AppendTitleValue("MaxStackElements", MaxStackElements);
-            sb.AppendTitleValue("MaxSizeOfInstructions", MaxSizeOfInstructions);
-            sb.AppendTitleValue("MaxComponentElements", MaxComponentElements);
-            sb.AppendTitleValue("MaxComponentDepth", MaxComponentDepth);
+            sb.AppendTitleValueLine("Version", Version);
+            sb.AppendTitleValueLine("NumGlyphs", NumGlyphs);
+            sb.AppendTitleValueLine("MaxPoints", MaxPoints);
+            sb.AppendTitleValueLine("MaxContours", MaxContours);
+            sb.AppendTitleValueLine("MaxCompositePoints", MaxCompositePoints);
+            sb.AppendTitleValueLine("MaxCompositeContours", MaxCompositeContours);
+            sb.AppendTitleValueLine("MaxZones", MaxZones);
+            sb.AppendTitleValueLine("MaxTwilightPoints", MaxTwilightPoints);
+            sb.AppendTitleValueLine("MaxStorage", MaxStorage);
+            sb.AppendTitleValueLine("MaxFunctionDefs", MaxFunctionDefs);
+            sb.AppendTitleValueLine("MaxInstructionDefs", MaxInstructionDefs);
+            sb.AppendTitleValueLine("MaxStackElements", MaxStackElements);
+            sb.AppendTitleValueLine("MaxSizeOfInstructions", MaxSizeOfInstructions);
+            sb.AppendTitleValueLine("MaxComponentElements", MaxComponentElements);
+            sb.AppendTitleValueLine("MaxComponentDepth", MaxComponentDepth);
             return sb.ToString();
         }
     }

@@ -34,8 +34,8 @@ namespace DumpFont.Tables
         public string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("HMetrics[]", $"({HMetrics.Length} records)");
-            sb.AppendTitleValue("LeftSideBearings[]", $"({LeftSideBearings.Length} records)");
+            sb.AppendTitleValueLine("HMetrics[]", HMetrics.CountString());
+            sb.AppendTitleValueLine("LeftSideBearings[]", LeftSideBearings.CountString());
             return sb.ToString();
         }
     }

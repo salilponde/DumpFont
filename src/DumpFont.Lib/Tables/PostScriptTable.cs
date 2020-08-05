@@ -38,15 +38,15 @@ namespace DumpFont.Tables
         public string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Version", Math.Round(Version, 2));
-            sb.AppendTitleValue("ItalicAngle", Math.Round(ItalicAngle, 2));
-            sb.AppendTitleValue("UnderlinePosition", UnderlinePosition);
-            sb.AppendTitleValue("UnderlineThickness", UnderlineThickness);
-            sb.AppendTitleValue("IsFixedPitch", IsFixedPitch);
-            sb.AppendTitleValue("MinMemType42", MinMemType42);
-            sb.AppendTitleValue("MaxMemType42", MaxMemType42);
-            sb.AppendTitleValue("MinMemType1", MinMemType1);
-            sb.AppendTitleValue("MaxMemType1", MaxMemType1);
+            sb.AppendTitleValueLine("Version", Math.Round(Version, 2));
+            sb.AppendTitleValueLine("ItalicAngle", Math.Round(ItalicAngle, 2));
+            sb.AppendTitleValueLine("UnderlinePosition", UnderlinePosition);
+            sb.AppendTitleValueLine("UnderlineThickness", UnderlineThickness);
+            sb.AppendTitleValueLine("IsFixedPitch", IsFixedPitch);
+            sb.AppendTitleValueLine("MinMemType42", MinMemType42);
+            sb.AppendTitleValueLine("MaxMemType42", MaxMemType42);
+            sb.AppendTitleValueLine("MinMemType1", MinMemType1);
+            sb.AppendTitleValueLine("MaxMemType1", MaxMemType1);
             return sb.ToString();
         }
     }

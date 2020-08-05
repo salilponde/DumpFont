@@ -56,9 +56,9 @@ namespace DumpFont.Tables
         public string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Version", Version);
-            sb.AppendTitleValue("NumTables", NumTables);
-            sb.AppendTitleValue("EncodingRecord[]", $"({EncodingRecords.Count} records)");
+            sb.AppendTitleValueLine("Version", Version);
+            sb.AppendTitleValueLine("NumTables", NumTables);
+            sb.AppendTitleValueLine("EncodingRecord[]", EncodingRecords.CountString());
             sb.AppendLine();
             sb.AppendTableRowLine("(Index)", "PlatformID", "EncodingID", "Offset", "(Format)");
             int i = 0;
@@ -152,18 +152,18 @@ namespace DumpFont.Tables
         public override string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Format", Format);
-            sb.AppendTitleValue("Length", Length);
-            sb.AppendTitleValue("Language", Language);
-            sb.AppendTitleValue("SegCountX2", SegCountX2);
-            sb.AppendTitleValue("SearchRange", SearchRange);
-            sb.AppendTitleValue("EntrySelector", EntrySelector);
-            sb.AppendTitleValue("RangeShift", RangeShift);
-            sb.AppendTitleValue("EndCode[]", $"({EndCode.Length} records)");
-            sb.AppendTitleValue("StartCode[]", $"({StartCode.Length} records)");
-            sb.AppendTitleValue("IdDelta[]", $"({IdDelta.Length} records)");
-            sb.AppendTitleValue("IdRangeOffset[]", $"({IdRangeOffset.Length} records)");
-            sb.AppendTitleValue("GlyphIdArray[]", $"({GlyphIdArray.Length} records)");
+            sb.AppendTitleValueLine("Format", Format);
+            sb.AppendTitleValueLine("Length", Length);
+            sb.AppendTitleValueLine("Language", Language);
+            sb.AppendTitleValueLine("SegCountX2", SegCountX2);
+            sb.AppendTitleValueLine("SearchRange", SearchRange);
+            sb.AppendTitleValueLine("EntrySelector", EntrySelector);
+            sb.AppendTitleValueLine("RangeShift", RangeShift);
+            sb.AppendTitleValueLine("EndCode[]", EndCode.CountString());
+            sb.AppendTitleValueLine("StartCode[]", StartCode.CountString());
+            sb.AppendTitleValueLine("IdDelta[]", IdDelta.CountString());
+            sb.AppendTitleValueLine("IdRangeOffset[]", IdRangeOffset.CountString());
+            sb.AppendTitleValueLine("GlyphIdArray[]", GlyphIdArray.CountString());
             return sb.ToString();
         }
 

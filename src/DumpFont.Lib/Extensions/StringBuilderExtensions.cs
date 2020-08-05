@@ -4,7 +4,7 @@ namespace DumpFont.Extensions
 {
     public static class StringBuilderExtensions
     {
-        public static void AppendTitleValue(this StringBuilder builder, string title, object value)
+        public static void AppendTitleValueLine(this StringBuilder builder, string title, object value)
         {
             builder.Append(string.Format("{0,-24}", $"{title}"));
             builder.AppendLine(value.ToString());
@@ -28,6 +28,15 @@ namespace DumpFont.Extensions
             foreach (var value in values)
             {
                 builder.Append(string.Format("{0,-24}", value));
+            }
+            builder.AppendLine();
+        }
+
+        public static void AppendTableShortRowLine(this StringBuilder builder, params string[] values)
+        {
+            foreach (var value in values)
+            {
+                builder.Append(string.Format("{0,-12}", value));
             }
             builder.AppendLine();
         }

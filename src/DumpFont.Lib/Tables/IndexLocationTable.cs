@@ -37,12 +37,12 @@ namespace DumpFont.Tables
         public override string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Offsets[]", $"({Offsets.Length} records)");
+            sb.AppendTitleValueLine("Offsets[]", Offsets.CountString());
             sb.AppendLine();
-            sb.AppendTitleValue("Glyph Index", "Offset");
+            sb.AppendTitleValueLine("Glyph Index", "Offset");
             for (int i = 0; i < Offsets.Length; i++)
             {
-                sb.AppendTitleValue(i.ToString(), Offsets[i]);
+                sb.AppendTitleValueLine(i.ToString(), Offsets[i]);
             }
             return sb.ToString();
         }
@@ -73,12 +73,12 @@ namespace DumpFont.Tables
         public override string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("Offsets[]", $"({Offsets.Length} records)");
+            sb.AppendTitleValueLine("Offsets[]", Offsets.CountString());
             sb.AppendLine();
-            sb.AppendTitleValue("Glyph Index", "Offset");
+            sb.AppendTitleValueLine("Glyph Index", "Offset");
             for (int i = 0; i < Offsets.Length; i++)
             {
-                sb.AppendTitleValue(i.ToString(), Offsets[i]);
+                sb.AppendTitleValueLine(i.ToString(), Offsets[i]);
             }
             return sb.ToString();
         }

@@ -49,20 +49,20 @@ namespace DumpFont.Tables
         public string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("MajorVersion", MajorVersion);
-            sb.AppendTitleValue("MinorVersion", MinorVersion);
-            sb.AppendTitleValue("Ascender", Ascender);
-            sb.AppendTitleValue("Descender", Descender);
-            sb.AppendTitleValue("LineGap", LineGap);
-            sb.AppendTitleValue("AdvanceWidthMax", AdvanceWidthMax);
-            sb.AppendTitleValue("MinLeftSideBearing", MinLeftSideBearing);
-            sb.AppendTitleValue("MinRightSideBearing", MinRightSideBearing);
-            sb.AppendTitleValue("ModifXMaxExtentied", XMaxExtent);
-            sb.AppendTitleValue("CaretSlopeRise", CaretSlopeRise);
-            sb.AppendTitleValue("CaretSlopeRun", CaretSlopeRun);
-            sb.AppendTitleValue("CaretOffset", CaretOffset);
-            sb.AppendTitleValue("MetricDataFormat", MetricDataFormat);
-            sb.AppendTitleValue("NumberOfHMetrics", NumberOfHMetrics);
+            sb.AppendTitleValueLine("MajorVersion", MajorVersion);
+            sb.AppendTitleValueLine("MinorVersion", MinorVersion);
+            sb.AppendTitleValueLine("Ascender", Ascender);
+            sb.AppendTitleValueLine("Descender", Descender);
+            sb.AppendTitleValueLine("LineGap", LineGap);
+            sb.AppendTitleValueLine("AdvanceWidthMax", AdvanceWidthMax);
+            sb.AppendTitleValueLine("MinLeftSideBearing", MinLeftSideBearing);
+            sb.AppendTitleValueLine("MinRightSideBearing", MinRightSideBearing);
+            sb.AppendTitleValueLine("ModifXMaxExtentied", XMaxExtent);
+            sb.AppendTitleValueLine("CaretSlopeRise", CaretSlopeRise);
+            sb.AppendTitleValueLine("CaretSlopeRun", CaretSlopeRun);
+            sb.AppendTitleValueLine("CaretOffset", CaretOffset);
+            sb.AppendTitleValueLine("MetricDataFormat", MetricDataFormat);
+            sb.AppendTitleValueLine("NumberOfHMetrics", NumberOfHMetrics);
             return sb.ToString();
         }
     }

@@ -72,8 +72,8 @@ namespace DumpFontConsole
                     Console.WriteLine($"Glyph Index: {index}\n");
                     var blockLocation = font.IndexLocationTable.GetLocation(index);
                     var nextBlockLocation = font.IndexLocationTable.GetLocation(index + 1);
-                    var glyphHeader = font.GlyphTable.ReadHeader(blockLocation);
-                    Console.WriteLine(glyphHeader.Dump());
+                    var glyphDetails = font.GlyphTable.ReadGlyph(blockLocation);
+                    Console.WriteLine(glyphDetails.Dump());
                 }
             }
             else

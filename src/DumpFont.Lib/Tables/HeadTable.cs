@@ -56,24 +56,24 @@ namespace DumpFont.Tables
         public string Dump()
         {
             var sb = new StringBuilder();
-            sb.AppendTitleValue("MajorVersion", MajorVersion);
-            sb.AppendTitleValue("MinorVersion", MinorVersion);
-            sb.AppendTitleValue("FontRevision", Math.Round(FontRevision, 2));
-            sb.AppendTitleValue("CheckSumAdjustment", CheckSumAdjustment);
-            sb.AppendTitleValue("MagicNumber", MagicNumber);
-            sb.AppendTitleValue("Flags", Convert.ToString(Flags, 2).PadLeft(16, '0'));
-            sb.AppendTitleValue("UnitsPerEm", UnitsPerEm);
-            sb.AppendTitleValue("Created", Created);
-            sb.AppendTitleValue("Modified", Modified);
-            sb.AppendTitleValue("XMin", XMin);
-            sb.AppendTitleValue("YMin", YMin);
-            sb.AppendTitleValue("XMax", XMax);
-            sb.AppendTitleValue("YMax", YMax);
-            sb.AppendTitleValue("MacStyle", MacStyle);
-            sb.AppendTitleValue("LowestRecPPEM", LowestRecPPEM);
-            sb.AppendTitleValue("FontDirectionHint", FontDirectionHint);
-            sb.AppendTitleValue("IndexToLocFormat", IndexToLocFormat);
-            sb.AppendTitleValue("GlyphDataFormat", GlyphDataFormat);
+            sb.AppendTitleValueLine("MajorVersion", MajorVersion);
+            sb.AppendTitleValueLine("MinorVersion", MinorVersion);
+            sb.AppendTitleValueLine("FontRevision", Math.Round(FontRevision, 2));
+            sb.AppendTitleValueLine("CheckSumAdjustment", CheckSumAdjustment);
+            sb.AppendTitleValueLine("MagicNumber", MagicNumber);
+            sb.AppendTitleValueLine("Flags", Convert.ToString(Flags, 2).PadLeft(16, '0'));
+            sb.AppendTitleValueLine("UnitsPerEm", UnitsPerEm);
+            sb.AppendTitleValueLine("Created", Created);
+            sb.AppendTitleValueLine("Modified", Modified);
+            sb.AppendTitleValueLine("XMin", XMin);
+            sb.AppendTitleValueLine("YMin", YMin);
+            sb.AppendTitleValueLine("XMax", XMax);
+            sb.AppendTitleValueLine("YMax", YMax);
+            sb.AppendTitleValueLine("MacStyle", MacStyle);
+            sb.AppendTitleValueLine("LowestRecPPEM", LowestRecPPEM);
+            sb.AppendTitleValueLine("FontDirectionHint", FontDirectionHint);
+            sb.AppendTitleValueLine("IndexToLocFormat", IndexToLocFormat);
+            sb.AppendTitleValueLine("GlyphDataFormat", GlyphDataFormat);
             return sb.ToString();
         }
     }
